@@ -15,4 +15,6 @@ public class SysParam {
     public static String selectTableName;
     public static String selectFilePath;
     public static Boolean hasHead = true;
+    public static String  delimiter = ",";
+    public static String  encoder = "utf8";
 }

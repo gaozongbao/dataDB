@@ -371,12 +371,13 @@ public class MyBoxDemo {
 					long start = System.currentTimeMillis();
 					dbHelper = new DBHelper(SysParam.driverClass, SysParam.url, SysParam.username, SysParam.password);
 					PreparedStatement preparedStatement;
-					String encoder = "utf8";
+					String encoder = SysParam.encoder;
+					String deli = SysParam.delimiter;
 					Connection connection = dbHelper.initDB();
 					int executeUpdate = 0;
 					int currentCount = 0;
 					int batchCount = 30000;
-					String sql = "load data local infile '' " + " ignore into table "+ SysParam.selectTableName + " character set "+encoder+ " fields terminated by ',' enclosed by ''";
+					String sql = "load data local infile '' " + " ignore into table "+ SysParam.selectTableName + " character set "+encoder+ " fields terminated by '"+deli+"' enclosed by ''";
 					if(SysParam.hasHead) {
 						CsvReader reader = null;
 						try {
@@ -469,13 +470,59 @@ public class MyBoxDemo {
 
 	public JPanel createRadioButton() {
 		JPanel contentPane=new JPanel();
+		contentPane.setLayout(new GridBagLayout());
+		GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
+		gridBagConstraints1.gridx = 0;
+		gridBagConstraints1.gridy = 0;
+		gridBagConstraints1.gridwidth = 1;
+		gridBagConstraints1.gridheight = 1;
+		GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
+		gridBagConstraints2.gridx = 1;
+		gridBagConstraints2.gridy = 0;
+		gridBagConstraints2.gridwidth = 1;
+		gridBagConstraints2.gridheight = 1;
+		GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
+		gridBagConstraints3.gridx = 0;
+		gridBagConstraints3.gridy = 1;
+		gridBagConstraints3.gridwidth = 1;
+		gridBagConstraints3.gridheight = 1;
+		GridBagConstraints gridBagConstraints4 = new GridBagConstraints();
+		gridBagConstraints4.gridx = 1;
+		gridBagConstraints4.gridy = 1;
+		gridBagConstraints4.gridwidth = 1;
+		gridBagConstraints4.gridheight = 1;
+		GridBagConstraints gridBagConstraints5 = new GridBagConstraints();
+		gridBagConstraints5.gridx = 0;
+		gridBagConstraints5.gridy = 2;
+		gridBagConstraints5.gridwidth = 1;
+		gridBagConstraints5.gridheight = 1;
+		GridBagConstraints gridBagConstraints6 = new GridBagConstraints();
+		gridBagConstraints6.gridx = 1;
+		gridBagConstraints6.gridy = 2;
+		gridBagConstraints6.gridwidth = 1;
+		gridBagConstraints6.gridheight = 1;
+//		gridBagConstraints1.anchor = GridBagConstraints.CENTER;
+//		gridBagConstraints1.fill = GridBagConstraints.BOTH;
+		//表头
+//		JLabel tou = new JLabel("是否有表头");
 		JRadioButton randioButton1=new JRadioButton("有表头",true);
 		JRadioButton randioButton2=new JRadioButton("无表头");
-		contentPane.add(randioButton1);
-		contentPane.add(randioButton2);
+//		contentPane.add(tou, gridBagConstraints1);
+		contentPane.add(randioButton1, gridBagConstraints1);
+		contentPane.add(randioButton2, gridBagConstraints2);
 		ButtonGroup group=new ButtonGroup();
 		group.add(randioButton1);
 		group.add(randioButton2);
+		//字段分隔符
+		contentPane.add(new JLabel("字符分隔符"), gridBagConstraints3);
+		String[] de = {",",";","|"};
+		final JComboBox<String> box = new JComboBox<>(de);
+		contentPane.add(box, gridBagConstraints4);
+		//编码
+		contentPane.add(new JLabel("文件编码"), gridBagConstraints5);
+		String[] encos = {"utf8","gbk","gb2312"};
+		final JComboBox<String> boxencos = new JComboBox<>(encos);
+		contentPane.add(boxencos, gridBagConstraints6);
 		randioButton1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -490,6 +537,21 @@ public class MyBoxDemo {
 				SysParam.hasHead = false;
 			}
 		});
+		box.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				info("字段分隔符:" + box.getSelectedItem().toString());
+				SysParam.delimiter = box.getSelectedItem().toString();
+			}
+		});
+		boxencos.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				info("文件编码:" + boxencos.getSelectedItem().toString());
+				SysParam.encoder = boxencos.getSelectedItem().toString();
+			}
+		});
+
 		return contentPane;
 	}
 

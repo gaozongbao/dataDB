@@ -276,7 +276,7 @@ public class ConfFrame {
 		cleanButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("aaaa");
+//				System.out.println("aaaa");
 				if(cleanButton.isEnabled()) {
 					for (int i = 0; i < rowName.length; i++) {
 						confTable.setValueAt(null, i,1);
