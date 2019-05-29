@@ -1,4 +1,4 @@
-package cmdi.sd.db;
+package gzb.db;
 
 import java.io.File;
 import java.sql.Connection;
