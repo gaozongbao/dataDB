@@ -1,4 +1,4 @@
-package cmdi.sd.util;
+package gzb.util;
 
 /**
  * @author: 高宗宝

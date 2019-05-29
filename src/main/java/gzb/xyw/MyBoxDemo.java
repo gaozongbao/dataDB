@@ -1,4 +1,4 @@
-package cmdi.sd.xyw;
+package gzb.xyw;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -11,15 +11,13 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultCaret;
 
-import cmdi.sd.db.DBHelper;
-import cmdi.sd.util.SysParam;
+import gzb.db.DBHelper;
+import gzb.util.SysParam;
 import com.csvreader.CsvReader;
 
 

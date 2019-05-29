@@ -1,7 +1,7 @@
-package cmdi.sd.xyw;
+package gzb.xyw;
 
-import cmdi.sd.db.DBHelper;
-import cmdi.sd.util.SysParam;
+import gzb.db.DBHelper;
+import gzb.util.SysParam;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -13,7 +13,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.net.ConnectException;
 import java.sql.Connection;
 import java.util.HashMap;
 
